@@ -1,0 +1,69 @@
+1. def myAtoi(s: str) -> int:
+    # Define 32-bit signed integer limits
+    INT_MAX = 2**31 - 1
+    INT_MIN = -2**31
+    
+    # Step 1: Ignore leading whitespace
+    i = 0
+    n = len(s)
+    while i < n and s[i] == ' ':
+        i += 1
+    
+    # Step 2: Check if there's a sign
+    sign = 1
+    if i < n and (s[i] == '-' or s[i] == '+'):
+        if s[i] == '-':
+            sign = -1
+        i += 1
+    
+    # Step 3: Convert the digits into an integer
+    result = 0
+    while i < n and s[i].isdigit():
+        result = result * 10 + int(s[i])
+        i += 1
+    
+    # Step 4: Apply the sign
+    result *= sign
+    
+    # Step 5: Clamp the result to the 32-bit signed integer range
+    if result < INT_MIN:
+        return INT_MIN
+    elif result > INT_MAX:
+        return INT_MAX
+    else:
+        return result
+2. 
+from collections import Counter
+
+def findAnagrams(s: str, p: str):
+    # Step 1: Initialize variables
+    result = []
+    len_s, len_p = len(s), len(p)
+
+    # Step 2: Base case: If s is shorter than p, return an empty result
+    if len_s < len_p:
+        return result
+
+    # Step 3: Count the frequency of characters in p and the first window of s
+    p_count = Counter(p)
+    s_count = Counter(s[:len_p])
+
+    # Step 4: Start sliding the window over the string s
+    for i in range(len_s - len_p + 1):
+        # Step 5: Check if the current window is an anagram of p
+        if s_count == p_count:
+            result.append(i)
+
+        # Step 6: Slide the window: remove the character that's going out and add the new character
+        if i + len_p < len_s:
+            s
+3. 
+def reverseWords(s: str) -> str:
+    # Step 1: Split the string into words (it handles multiple spaces)
+    words = s.split()
+
+    # Step 2: Reverse the list of words
+    reversed_words = words[::-1]
+
+    # Step 3: Join the words with a single space and return the result
+    return ' '.join(reversed_words)
